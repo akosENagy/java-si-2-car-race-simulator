@@ -1,6 +1,9 @@
+import java.util.Random;
+
 public class Motorcycle extends Vehicle {
 
     static int nameNumber = 1;
+    static int speed = 100;
 
     public Motorcycle() {
         this.name = "Motorcycle " + nameNumber++;
@@ -8,6 +11,12 @@ public class Motorcycle extends Vehicle {
     }
 
     void moveForAnHour() {
-        // speed is 100km/h. If rains, travels with 5-50km/h slower (randomly).
+        int slowed = 0;
+        if (Main.isRaining) {
+            Random rnd = new Random();
+            slowed = rnd.nextInt(45) + 5;
+        }
+
+        this.distanceTravelled += speed - slowed;
     }
 }
